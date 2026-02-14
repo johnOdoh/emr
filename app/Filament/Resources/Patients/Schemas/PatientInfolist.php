@@ -16,6 +16,22 @@ class PatientInfolist
                 TextEntry::make('gender'),
                 TextEntry::make('address'),
                 TextEntry::make('phone'),
+                TextEntry::make('weight')
+                    ->numeric(),
+                TextEntry::make('height')
+                    ->numeric(),
+                TextEntry::make('spo2'),
+                TextEntry::make('blood_group'),
+                TextEntry::make('genotype'),
+                TextEntry::make('disability')
+                    ->placeholder('-'),
+                TextEntry::make('primary_diagnosis')
+                    ->placeholder('-'),
+                TextEntry::make('secondary_diagnosis')
+                    ->placeholder('-'),
+                TextEntry::make('complaints')
+                    ->placeholder('-')
+                    ->columnSpanFull(),
                 TextEntry::make('dob')
                     ->dateTime(),
                 TextEntry::make('created_at')

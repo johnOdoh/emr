@@ -9,5 +9,9 @@ class Patient extends Model
     protected $guarded = ['id'];
     protected $casts = [
         'dob' => 'datetime',
+        'allergies' => 'array',
+        'chronic_conditions' => 'array',
+        'current_medications' => 'array',
+        'prescriptions' => 'array',
     ];
 }

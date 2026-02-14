@@ -25,6 +25,24 @@ class PatientsTable
                     ->searchable(),
                 TextColumn::make('phone')
                     ->searchable(),
+                TextColumn::make('weight')
+                    ->numeric()
+                    ->sortable(),
+                TextColumn::make('height')
+                    ->numeric()
+                    ->sortable(),
+                TextColumn::make('spo2')
+                    ->searchable(),
+                TextColumn::make('blood_group')
+                    ->searchable(),
+                TextColumn::make('genotype')
+                    ->searchable(),
+                TextColumn::make('disability')
+                    ->searchable(),
+                TextColumn::make('primary_diagnosis')
+                    ->searchable(),
+                TextColumn::make('secondary_diagnosis')
+                    ->searchable(),
                 TextColumn::make('dob')
                     ->dateTime()
                     ->sortable(),
