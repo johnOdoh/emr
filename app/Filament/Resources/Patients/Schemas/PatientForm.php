@@ -4,7 +4,6 @@ namespace App\Filament\Resources\Patients\Schemas;
 
 use Filament\Schemas\Schema;
 use Filament\Forms\Components\Select;
-use Filament\Schemas\Components\Grid;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -76,14 +75,14 @@ class PatientForm
                                 'SS' => 'SS',
                             ])
                             ->required(),
-                            // TextInput::make('allergies'),
-                            TextInput::make('disability'),
-                            TextInput::make('primary_diagnosis'),
-                            Textarea::make('complaints'),
-                            Textarea::make('medical_history')
-                                ->columnSpanFull(),
-                            Fieldset::make('Chronic Conditions')
-                                ->schema([
+                        // TextInput::make('allergies'),
+                        TextInput::make('disability'),
+                        TextInput::make('primary_diagnosis'),
+                        Textarea::make('complaints'),
+                        Textarea::make('medical_history')
+                            ->columnSpanFull(),
+                        Fieldset::make('Chronic Conditions')
+                            ->schema([
                                 Repeater::make('chronic_conditions')
                                     ->schema([
                                         TextInput::make('condition_name')
@@ -93,8 +92,8 @@ class PatientForm
                                     ->grid(2)
                                     ->columnSpanFull(),
                             ])->columnSpanFull(),
-                            Fieldset::make('Known Allergies')
-                                ->schema([
+                        Fieldset::make('Known Allergies')
+                            ->schema([
                                 Repeater::make('allergies')
                                     ->schema([
                                         TextInput::make('allergy_name')
@@ -104,8 +103,8 @@ class PatientForm
                                     ->grid(2)
                                     ->columnSpanFull(),
                             ])->columnSpanFull(),
-                            Fieldset::make('Medications')
-                                ->schema([
+                        Fieldset::make('Medications')
+                            ->schema([
                                 Repeater::make('current_medications')
                                     ->schema([
                                         TextInput::make('medication_name')
