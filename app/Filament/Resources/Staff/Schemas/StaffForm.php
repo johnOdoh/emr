@@ -3,7 +3,6 @@
 namespace App\Filament\Resources\Staff\Schemas;
 
 use Filament\Forms\Components\DatePicker;
-use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -87,6 +86,17 @@ class StaffForm
                             ->required(),
                         TextInput::make('department')
                             ->required(),
+                        Select::make('role')
+                            ->required(),
+                        Select::make('employment_status')
+                            ->required()
+                            ->options([
+                                'Doctor' => 'Doctor',
+                                'Nurse' => 'Nurse',
+                                'HR' => 'HR',
+                                'Receptionist' => 'Receptionist',
+                                'Admin' => 'Administrator',
+                            ]),
                         Select::make('employment_status')
                             ->required()
                             ->options([

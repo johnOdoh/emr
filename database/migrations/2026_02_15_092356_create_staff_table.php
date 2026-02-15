@@ -24,6 +24,7 @@ return new class extends Migration
             $table->json('emergency_contact_details');
             $table->string('job_title');
             $table->string('department');
+            $table->string('role');
             $table->string('employment_status');
             $table->string('employment_type');
             $table->decimal('salary', 10, 2);

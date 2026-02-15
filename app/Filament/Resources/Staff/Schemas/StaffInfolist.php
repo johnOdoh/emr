@@ -2,7 +2,6 @@
 
 namespace App\Filament\Resources\Staff\Schemas;
 
-use Filament\Infolists\Components\KeyValueEntry;
 use Filament\Infolists\Components\RepeatableEntry;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Components\Section;
@@ -45,6 +44,7 @@ class StaffInfolist
                     ->schema([
                         TextEntry::make('job_title'),
                         TextEntry::make('department'),
+                        TextEntry::make('role'),
                         TextEntry::make('employment_status'),
                         TextEntry::make('employment_type'),
                         TextEntry::make('employment_date')
