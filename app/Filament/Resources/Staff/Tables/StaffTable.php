@@ -20,14 +20,13 @@ class StaffTable
                 TextColumn::make('firstname')
                     ->searchable(),
                 TextColumn::make('middlename')
+                    ->placeholder('N/A')
                     ->searchable(),
                 TextColumn::make('marital_status')
                     ->searchable(),
                 TextColumn::make('gender')
                     ->searchable(),
                 TextColumn::make('phone')
-                    ->searchable(),
-                TextColumn::make('address')
                     ->searchable(),
                 TextColumn::make('email')
                     ->label('Email address')
@@ -40,22 +39,15 @@ class StaffTable
                     ->searchable(),
                 TextColumn::make('employment_type')
                     ->searchable(),
+                TextColumn::make('employment_date')
+                    ->dateTime('d M Y')
+                    ->sortable(),
                 TextColumn::make('salary')
+                    ->label('Salary (₦)')
                     ->numeric()
                     ->sortable(),
                 TextColumn::make('payment_frequency')
                     ->searchable(),
-                TextColumn::make('employment_date')
-                    ->dateTime()
-                    ->sortable(),
-                TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //
