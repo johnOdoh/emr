@@ -16,4 +16,9 @@ class StaffStatWidget extends StatsOverviewWidget
                 ->color('success'),
         ];
     }
+
+    public static function canView(): bool
+    {
+        return auth()->user()->can('viewAny', Staff::class);
+    }
 }

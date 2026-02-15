@@ -16,4 +16,9 @@ class PatientStatWidget extends StatsOverviewWidget
                 ->color('success'),
         ];
     }
+
+    public static function canView(): bool
+    {
+        return auth()->user()->can('viewAny', Patient::class);
+    }
 }
