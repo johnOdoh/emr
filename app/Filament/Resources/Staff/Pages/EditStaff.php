@@ -15,7 +15,8 @@ class EditStaff extends EditRecord
     protected function afterSave(): void
     {
         if ($this->record->employment_status !== 'Active') {
-            User::where('email', $this->record->email)->update(['is_active' => false]);
+            User::where('email', $this->record->email)
+                ->update(['is_active' => false]);
         }
     }
 

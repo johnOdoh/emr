@@ -14,6 +14,7 @@ class CreateStaff extends CreateRecord
     protected function afterCreate(): void
     {
         if (!in_array($this->record->role, UserRole::toArray())) return;
+        if (User::where('email', $this->record->email)->exists()) return;
         User::create([
             'name' => "{$this->record->surname} {$this->record->firstname}",
             'email' => $this->record->email,
