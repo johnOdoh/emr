@@ -11,17 +11,24 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('profiles', function (Blueprint $table) {
+        Schema::create('staff', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->string('job_title');
+            $table->string('surname');
+            $table->string('firstname');
+            $table->string('middlename')->nullable();
+            $table->string('marital_status');
             $table->string('gender');
             $table->string('phone');
             $table->string('address');
-            $table->string('state');
-            $table->string('lga');
+            $table->string('email');
+            $table->json('emergency_contact_details');
+            $table->string('job_title');
             $table->string('department');
+            $table->string('employment_status');
+            $table->string('employment_type');
             $table->decimal('salary', 10, 2);
+            $table->json('account_details')->nullable();
+            $table->string('payment_frequency')->default('Monthly');
             $table->timestamp('employment_date');
             $table->timestamps();
         });
@@ -32,6 +39,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('profiles');
+        Schema::dropIfExists('staff');
     }
 };

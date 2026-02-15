@@ -42,27 +42,27 @@ class PatientInfolist
                         TextEntry::make('disability')
                             ->placeholder('N/A'),
                         TextEntry::make('primary_diagnosis')
-                            ->placeholder('-'),
+                            ->placeholder('N/A'),
                         TextEntry::make('complaints')
-                            ->placeholder('-'),
+                            ->placeholder('N/A'),
                         TextEntry::make('medical_history')
-                            ->placeholder('-'),
+                            ->placeholder('N/A'),
                         TextEntry::make('chronic_conditions')
-                            ->placeholder('-')
+                            ->placeholder('N/A')
                             ->label('Chronic Conditions')
                             ->formatStateUsing(function ($state) {
                                 return collect($state)
                                     ->implode(', ');
                             }),
                         TextEntry::make('allergies')
-                            ->placeholder('-')
+                            ->placeholder('N/A')
                             ->label('Allergies')
                             ->formatStateUsing(function ($state) {
                                 return collect($state)
                                     ->implode(', ');
                             }),
                         TextEntry::make('current_medications')
-                            ->placeholder('-')
+                            ->placeholder('N/A')
                             ->label('Current Medications')
                             ->formatStateUsing(function ($state) {
                                 return collect($state)

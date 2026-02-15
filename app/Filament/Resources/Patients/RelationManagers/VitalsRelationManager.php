@@ -71,8 +71,9 @@ class VitalsRelationManager extends RelationManager
                     ->suffix('mmHg')
                     ->numeric(),
                 TextEntry::make('created_at')
+                    ->label('Recorded At')
                     ->dateTime()
-                    ->placeholder('-')
+                    ->placeholder('N/A'),
             ]);
     }
 
@@ -105,6 +106,7 @@ class VitalsRelationManager extends RelationManager
                     ->numeric()
                     ->sortable(),
                 TextColumn::make('created_at')
+                    ->label('Recorded At')
                     ->dateTime()
                     ->sortable(),
             ])

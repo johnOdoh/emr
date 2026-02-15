@@ -79,9 +79,8 @@ class PatientForm
                             // TextInput::make('allergies'),
                             TextInput::make('disability'),
                             TextInput::make('primary_diagnosis'),
+                            Textarea::make('complaints'),
                             Textarea::make('medical_history')
-                                ->columnSpanFull(),
-                            Textarea::make('complaints')
                                 ->columnSpanFull(),
                             Fieldset::make('Chronic Conditions')
                                 ->schema([
