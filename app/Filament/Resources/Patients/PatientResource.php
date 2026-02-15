@@ -2,27 +2,30 @@
 
 namespace App\Filament\Resources\Patients;
 
-use App\Filament\Resources\Patients\Pages\CreatePatient;
-use App\Filament\Resources\Patients\Pages\EditPatient;
-use App\Filament\Resources\Patients\Pages\ListPatients;
-use App\Filament\Resources\Patients\Pages\ViewPatient;
-use App\Filament\Resources\Patients\Schemas\PatientForm;
-use App\Filament\Resources\Patients\Schemas\PatientInfolist;
-use App\Filament\Resources\Patients\Tables\PatientsTable;
-use App\Models\Patient;
 use BackedEnum;
-use Filament\Resources\Resource;
-use Filament\Schemas\Schema;
-use Filament\Support\Icons\Heroicon;
+use App\Models\Patient;
 use Filament\Tables\Table;
+use Filament\Schemas\Schema;
+use Filament\Resources\Resource;
+use Filament\Support\Icons\Heroicon;
+use App\Filament\Resources\Patients\Pages\EditPatient;
+use App\Filament\Resources\Patients\Pages\ViewPatient;
+use App\Filament\Resources\Patients\Pages\ListPatients;
+use App\Filament\Resources\Patients\Pages\CreatePatient;
+use App\Filament\Resources\Patients\RelationManagers\LabResultsRelationManager;
+use App\Filament\Resources\Patients\Schemas\PatientForm;
+use App\Filament\Resources\Patients\Tables\PatientsTable;
+use App\Filament\Resources\Patients\Schemas\PatientInfolist;
+use App\Filament\Resources\Patients\RelationManagers\VitalsRelationManager;
 
 class PatientResource extends Resource
 {
     protected static ?string $model = Patient::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::UserGroup;
 
-    protected static ?string $recordTitleAttribute = 'Patient';
+    protected static ?string $recordTitleAttribute = 'name';
+    protected static ?string $modelLabel = 'Patient';
 
     public static function form(Schema $schema): Schema
     {
@@ -42,7 +45,8 @@ class PatientResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            VitalsRelationManager::class,
+            LabResultsRelationManager::class,
         ];
     }
 

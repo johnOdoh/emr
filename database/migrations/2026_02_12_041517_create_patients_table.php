@@ -23,14 +23,13 @@ return new class extends Migration
             $table->string('spo2');
             $table->string('blood_group');
             $table->string('genotype');
+            $table->string('primary_diagnosis')->nullable();
+            $table->string('disability')->nullable();
+            $table->text('complaints')->nullable();
+            $table->text('medical_history')->nullable();
             $table->json('allergies')->nullable();
             $table->json('chronic_conditions')->nullable();
-            $table->string('disability')->nullable();
             $table->json('current_medications')->nullable();
-            $table->string('primary_diagnosis')->nullable();
-            $table->string('secondary_diagnosis')->nullable();
-            $table->text('complaints')->nullable();
-            $table->json('prescriptions')->nullable();
             $table->timestamp('dob');
             $table->timestamps();
         });

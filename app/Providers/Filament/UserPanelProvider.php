@@ -28,6 +28,9 @@ class UserPanelProvider extends PanelProvider
             ->id('user')
             ->path('user')
             ->login()
+            ->readOnlyRelationManagersOnResourceViewPagesByDefault(false)
+            ->sidebarCollapsibleOnDesktop()
+            ->sidebarWidth('15rem')
             ->colors([
                 'primary' => Color::Amber,
             ])
