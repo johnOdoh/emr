@@ -87,8 +87,6 @@ class StaffForm
                         TextInput::make('department')
                             ->required(),
                         Select::make('role')
-                            ->required(),
-                        Select::make('employment_status')
                             ->required()
                             ->options([
                                 'Doctor' => 'Doctor',
