@@ -2,7 +2,9 @@
 
 namespace App\Filament\Resources\Staff\Schemas;
 
+use App\Enums\Departments;
 use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -84,17 +86,9 @@ class StaffForm
                     ->schema([
                         TextInput::make('job_title')
                             ->required(),
-                        TextInput::make('department')
-                            ->required(),
-                        Select::make('role')
+                        Select::make('department')
                             ->required()
-                            ->options([
-                                'Doctor' => 'Doctor',
-                                'Nurse' => 'Nurse',
-                                'HR' => 'HR',
-                                'Receptionist' => 'Receptionist',
-                                'Admin' => 'Administrator',
-                            ]),
+                            ->options(Departments::toArray()),
                         Select::make('employment_status')
                             ->required()
                             ->options([
@@ -140,6 +134,25 @@ class StaffForm
                             ->defaultItems(0)
                             ->maxItems(1)
                             ->reorderable(false),
+                    ]),
+                Fieldset::make('Documentation')
+                    ->columns([
+                        'default' => 1,
+                        'md' => 2,
+                    ])
+                    ->schema([
+                        FileUpload::make('certifications')
+                            // ->label('Certifications')
+                            ->disk('public')
+                            ->directory('staff/certifications')
+                            ->visibility('public')
+                            ->multiple()
+                            ->maxParallelUploads(3)
+                            ->moveFiles()
+                            ->openable()
+                            ->downloadable()
+                            ->maxSize(5124)
+                            ->acceptedFileTypes(['application/pdf'])
                     ]),
             ])->columns(1);
     }

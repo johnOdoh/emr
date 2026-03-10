@@ -12,7 +12,6 @@ use App\Filament\Resources\Patients\Pages\EditPatient;
 use App\Filament\Resources\Patients\Pages\ViewPatient;
 use App\Filament\Resources\Patients\Pages\ListPatients;
 use App\Filament\Resources\Patients\Pages\CreatePatient;
-use App\Filament\Resources\Patients\RelationManagers\LabResultsRelationManager;
 use App\Filament\Resources\Patients\Schemas\PatientForm;
 use App\Filament\Resources\Patients\Tables\PatientsTable;
 use App\Filament\Resources\Patients\Schemas\PatientInfolist;
@@ -46,7 +45,6 @@ class PatientResource extends Resource
     {
         return [
             VitalsRelationManager::class,
-            LabResultsRelationManager::class,
         ];
     }
 

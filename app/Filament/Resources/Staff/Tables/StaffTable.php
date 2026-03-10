@@ -15,6 +15,9 @@ class StaffTable
     {
         return $table
             ->columns([
+                TextColumn::make('index')
+                    ->rowIndex()
+                    ->label('#'),
                 TextColumn::make('surname')
                     ->searchable(),
                 TextColumn::make('firstname')

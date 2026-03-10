@@ -30,6 +30,7 @@ return new class extends Migration
             $table->json('allergies')->nullable();
             $table->json('chronic_conditions')->nullable();
             $table->json('current_medications')->nullable();
+            $table->json('lab_results')->nullable();
             $table->timestamp('dob');
             $table->timestamps();
         });
