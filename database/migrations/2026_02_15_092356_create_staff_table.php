@@ -22,12 +22,12 @@ return new class extends Migration
             $table->string('phone');
             $table->string('address');
             $table->string('email');
-            $table->string('cv');
+            $table->string('cv')->nullable();
+            $table->string('id_document')->nullable();
             $table->json('emergency_contact_details');
             //employment details
             $table->string('job_title');
             $table->string('department');
-            $table->string('role');
             $table->string('employment_status');
             $table->string('employment_type');
             $table->timestamp('employment_date');
@@ -36,7 +36,7 @@ return new class extends Migration
             $table->decimal('salary', 10, 2);
             $table->json('account_details')->nullable();
             $table->string('payment_frequency')->default('Monthly');
-            $table->string('tin')->nullable();
+            $table->string('tin');
 
             //leave
             $table->json('annual_leave')->nullable();

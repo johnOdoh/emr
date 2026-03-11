@@ -12,7 +12,17 @@ class Staff extends Model
     protected $casts = [
         'emergency_contact_details' => 'array',
         'account_details' => 'array',
-        'employment_date' => 'datetime',
-        'detartment' => Departments::class,
+        'employment_date' => 'date',
+        'department' => Departments::class,
+        'annual_leave' => 'array',
+        'sick_leave' => 'array',
+        'work_authorization' => 'array',
+        'certifications' => 'array',
+        'performance_reviews' => 'array',
+        'disciplinary_records' => 'array',
+        'training_records' => 'array',
+        'promotion_history' => 'array',
+        'skills' => 'array',
+        'termination_date' => 'date',
     ];
 }

@@ -13,4 +13,11 @@ enum Departments: string
     {
         return array_map(fn(self $role) => $role->value, self::cases());
     }
+
+    public static function toOptions(): array
+    {
+        return collect(self::cases())
+            ->mapWithKeys(fn(self $dept) => [$dept->value => $dept->value])
+            ->toArray();
+    }
 }
