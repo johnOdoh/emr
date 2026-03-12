@@ -18,16 +18,7 @@ class StaffTable
                 TextColumn::make('index')
                     ->rowIndex()
                     ->label('#'),
-                TextColumn::make('surname')
-                    ->searchable(),
-                TextColumn::make('firstname')
-                    ->searchable(),
-                TextColumn::make('middlename')
-                    ->placeholder('N/A')
-                    ->searchable(),
-                TextColumn::make('marital_status')
-                    ->searchable(),
-                TextColumn::make('gender')
+                TextColumn::make('fullname')
                     ->searchable(),
                 TextColumn::make('phone')
                     ->searchable(),
@@ -39,8 +30,15 @@ class StaffTable
                 TextColumn::make('department')
                     ->searchable(),
                 TextColumn::make('employment_status')
+                    ->color(fn($state) => match ($state) {
+                        'Active'   => 'success',
+                        'On Leave' => 'warning',
+                        'Terminated'  => 'danger'
+                    })
+                    ->badge()
                     ->searchable(),
                 TextColumn::make('employment_type')
+                    ->badge()
                     ->searchable(),
                 TextColumn::make('employment_date')
                     ->dateTime('d M Y')
@@ -50,6 +48,7 @@ class StaffTable
                     ->numeric()
                     ->sortable(),
                 TextColumn::make('payment_frequency')
+                    ->badge()
                     ->searchable(),
             ])
             ->filters([

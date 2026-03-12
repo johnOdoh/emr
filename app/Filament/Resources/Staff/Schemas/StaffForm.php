@@ -13,7 +13,6 @@ use Filament\Schemas\Components\Fieldset;
 use Filament\Schemas\Schema;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\HtmlString;
-use Laravel\SerializableClosure\Serializers\Native;
 
 class StaffForm
 {
@@ -204,6 +203,7 @@ class StaffForm
                             ->maxSize(2048)
                             ->acceptedFileTypes(['application/pdf']),
                         FileUpload::make('nda')
+                            ->label('NDA')
                             ->disk('public')
                             ->directory('staff/nda')
                             ->visibility('public')

@@ -25,4 +25,9 @@ class Staff extends Model
         'skills' => 'array',
         'termination_date' => 'date',
     ];
+
+    public function getFullnameAttribute()
+    {
+        return $this->firstname . ' ' . ($this->middlename ?? '') . ' ' . $this->lastname;
+    }
 }
