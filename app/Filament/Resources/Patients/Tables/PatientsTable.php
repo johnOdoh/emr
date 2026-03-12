@@ -19,21 +19,25 @@ class PatientsTable
                     ->rowIndex()
                     ->label('#'),
                 TextColumn::make('patient_code')
+                    ->sortable()
                     ->searchable(),
                 TextColumn::make('name')
+                    ->sortable()
                     ->searchable(),
                 TextColumn::make('gender')
                     ->badge()
-                    ->searchable(),
+                    ->sortable(),
                 TextColumn::make('phone')
                     ->searchable(),
                 TextColumn::make('dob')
                     ->dateTime('d M, Y')
                     ->sortable(),
                 TextColumn::make('blood_group')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('genotype')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

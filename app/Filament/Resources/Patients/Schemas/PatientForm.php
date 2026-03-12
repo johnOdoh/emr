@@ -25,7 +25,6 @@ class PatientForm
                     ])
                     ->schema([
                         TextInput::make('name')
-                            ->hiddenOn(Operation::Edit)
                             ->required(),
                         Select::make('gender')
                             ->options([

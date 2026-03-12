@@ -16,7 +16,7 @@ class CreateStaff extends CreateRecord
         if (!in_array($this->record->role, UserRole::toArray())) return;
         if (User::where('email', $this->record->email)->exists()) return;
         User::create([
-            'name' => "{$this->record->surname} {$this->record->firstname}",
+            'name' => $this->record->fullname,
             'email' => $this->record->email,
             'role' => $this->record->role,
             'password' => bcrypt($this->record->email),

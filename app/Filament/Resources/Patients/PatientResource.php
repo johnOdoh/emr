@@ -2,20 +2,21 @@
 
 namespace App\Filament\Resources\Patients;
 
-use BackedEnum;
-use App\Models\Patient;
-use Filament\Tables\Table;
-use Filament\Schemas\Schema;
-use Filament\Resources\Resource;
-use Filament\Support\Icons\Heroicon;
-use App\Filament\Resources\Patients\Pages\EditPatient;
-use App\Filament\Resources\Patients\Pages\ViewPatient;
-use App\Filament\Resources\Patients\Pages\ListPatients;
 use App\Filament\Resources\Patients\Pages\CreatePatient;
-use App\Filament\Resources\Patients\Schemas\PatientForm;
-use App\Filament\Resources\Patients\Tables\PatientsTable;
-use App\Filament\Resources\Patients\Schemas\PatientInfolist;
+use App\Filament\Resources\Patients\Pages\EditPatient;
+use App\Filament\Resources\Patients\Pages\ListPatients;
+use App\Filament\Resources\Patients\Pages\ViewPatient;
 use App\Filament\Resources\Patients\RelationManagers\VitalsRelationManager;
+use App\Filament\Resources\Patients\Schemas\PatientForm;
+use App\Filament\Resources\Patients\Schemas\PatientInfolist;
+use App\Filament\Resources\Patients\Tables\PatientsTable;
+use App\Models\Patient;
+use BackedEnum;
+use Filament\Resources\Resource;
+use Filament\Schemas\Schema;
+use Filament\Support\Icons\Heroicon;
+use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Model;
 
 class PatientResource extends Resource
 {
@@ -25,6 +26,18 @@ class PatientResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'name';
     protected static ?string $modelLabel = 'Patient';
+
+    public static function getGloballySearchableAttributes(): array
+    {
+        return ['name', 'patient_code'];
+    }
+
+    public static function getGlobalSearchResultDetails(Model $record): array
+    {
+        return [
+            'Code' => $record->patient_code,
+        ];
+    }
 
     public static function form(Schema $schema): Schema
     {

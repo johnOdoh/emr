@@ -28,6 +28,6 @@ class Staff extends Model
 
     public function getFullnameAttribute()
     {
-        return $this->firstname . ' ' . ($this->middlename ?? '') . ' ' . $this->lastname;
+        return $this->firstname . ' ' . ($this->middlename ?? '') . ' ' . $this->surname;
     }
 }

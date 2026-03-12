@@ -19,6 +19,8 @@ class StaffTable
                     ->rowIndex()
                     ->label('#'),
                 TextColumn::make('fullname')
+                    ->label('Name')
+                    ->sortable()
                     ->searchable(),
                 TextColumn::make('phone')
                     ->searchable(),
@@ -28,6 +30,7 @@ class StaffTable
                 TextColumn::make('job_title')
                     ->searchable(),
                 TextColumn::make('department')
+                    ->sortable()
                     ->searchable(),
                 TextColumn::make('employment_status')
                     ->color(fn($state) => match ($state) {

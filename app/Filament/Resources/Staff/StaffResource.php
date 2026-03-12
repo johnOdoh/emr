@@ -15,6 +15,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Model;
 
 class StaffResource extends Resource
 {
@@ -23,6 +24,23 @@ class StaffResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = Heroicon::Users;
 
     protected static ?string $recordTitleAttribute = 'surname';
+
+    public static function getGlobalSearchResultTitle(Model $record): string
+    {
+        return $record->fullname;
+    }
+
+    public static function getGloballySearchableAttributes(): array
+    {
+        return ['surname', 'firstname', 'middlename', 'email'];
+    }
+
+    public static function getGlobalSearchResultDetails(Model $record): array
+    {
+        return [
+            'Email' => $record->email
+        ];
+    }
 
     public static function form(Schema $schema): Schema
     {

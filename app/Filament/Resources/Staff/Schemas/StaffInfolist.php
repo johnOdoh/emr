@@ -26,10 +26,12 @@ class StaffInfolist
                     ->description('Basic details about the staff member')
                     ->collapsible()
                     ->schema([
-                        TextEntry::make('fullname'),
+                        TextEntry::make('fullname')
+                            ->label('Name'),
                         TextEntry::make('email')
                             ->label('Email address'),
-                        TextEntry::make('phone'),
+                        TextEntry::make('phone')
+                            ->label('Phone Number'),
                         TextEntry::make('address'),
                         TextEntry::make('gender')
                             ->color('primary')

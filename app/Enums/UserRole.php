@@ -8,6 +8,7 @@ enum UserRole: string
     case NURSE = 'Nurse';
     case DOCTOR = 'Doctor';
     case HR = 'HR';
+    case HOSPITAL_LIAISON = 'Hospital Liaison';
 
     public static function toArray(): array
     {
