@@ -12,15 +12,11 @@ class Patient extends Model
         'allergies' => 'array',
         'chronic_conditions' => 'array',
         'current_medications' => 'array',
+        'lab_results' => 'array',
     ];
 
     public function vitals()
     {
         return $this->hasMany(Vital::class);
-    }
-
-    public function labResults()
-    {
-        return $this->hasMany(LabResult::class);
     }
 }

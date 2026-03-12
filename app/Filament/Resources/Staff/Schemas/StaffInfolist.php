@@ -196,7 +196,7 @@ class StaffInfolist
                             ->url(fn($state) => $state ? Storage::url($state) : 'N/A', true)
                             ->color('primary'),
                         TextEntry::make('work_authorization')
-                            ->label('Work Authorization Documents4')
+                            ->label('Work Authorization Documents')
                             ->placeholder('N/A')
                             ->color('primary')
                             ->formatStateUsing(function ($state) {

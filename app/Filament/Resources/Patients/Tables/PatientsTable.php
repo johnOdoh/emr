@@ -23,22 +23,16 @@ class PatientsTable
                 TextColumn::make('name')
                     ->searchable(),
                 TextColumn::make('gender')
-                    ->searchable(),
-                TextColumn::make('address')
+                    ->badge()
                     ->searchable(),
                 TextColumn::make('phone')
                     ->searchable(),
                 TextColumn::make('dob')
                     ->dateTime('d M, Y')
                     ->sortable(),
-                TextColumn::make('spo2')
-                    ->searchable(),
                 TextColumn::make('blood_group')
                     ->searchable(),
                 TextColumn::make('genotype')
-                    ->searchable(),
-                TextColumn::make('primary_diagnosis')
-                    ->placeholder('N/A')
                     ->searchable(),
                 TextColumn::make('created_at')
                     ->dateTime()
