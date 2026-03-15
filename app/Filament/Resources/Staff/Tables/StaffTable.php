@@ -2,11 +2,13 @@
 
 namespace App\Filament\Resources\Staff\Tables;
 
+use App\Enums\Departments;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 
 class StaffTable
@@ -55,7 +57,16 @@ class StaffTable
                     ->searchable(),
             ])
             ->filters([
-                //
+                SelectFilter::make('employment_status')
+                    ->multiple()
+                    ->options([
+                        'Active' => 'Active',
+                        'On Leave' => 'On Leave',
+                        'Terminated' => 'Terminated',
+                    ]),
+                SelectFilter::make('department')
+                    ->multiple()
+                    ->options(Departments::toOptions()),
             ])
             ->recordActions([
                 ViewAction::make(),
