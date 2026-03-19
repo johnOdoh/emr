@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Staff\Tables;
 
 use App\Enums\Departments;
+use Filament\Actions\Action;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
@@ -71,6 +72,11 @@ class StaffTable
             ->recordActions([
                 ViewAction::make(),
                 EditAction::make(),
+                Action::make('generate_payslip')
+                    ->color('info')
+                    ->url(fn($record): string => route('filament.user.resources.payslips.create', ['id' => $record->id]))
+                    ->openUrlInNewTab()
+                    ->icon('heroicon-o-document-text'),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

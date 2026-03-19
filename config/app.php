@@ -14,6 +14,9 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
+    'address' => env('APP_ADDRESS', '17th Floor Elephant House'),
+    'area' => env('APP_AREA', 'Marina Street, Lagos Island'),
+    'state' => env('APP_STATE', 'Lagos State'),
 
     /*
     |--------------------------------------------------------------------------
