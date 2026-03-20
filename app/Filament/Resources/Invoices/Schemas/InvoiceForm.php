@@ -45,22 +45,40 @@ class InvoiceForm
                             ->schema([
                                 TextInput::make('item_name')
                                     ->required(),
-                                TextInput::make('number_of_hours')
-                                    ->required()
-                                    ->numeric()
-                                    ->minValue(1),
-                                TextInput::make('hourly_rate')
+                                TextInput::make('rate')
+                                    ->label('Rate per unit/hour')
                                     ->prefix('₦')
                                     ->required()
                                     ->numeric()
                                     ->step(0.0),
+                                TextInput::make('units')
+                                    ->label('Number of units/hours')
+                                    ->required()
+                                    ->numeric()
+                                    ->minValue(1),
                                 TextInput::make('total_amount')
                                     ->prefix('₦')
                                     ->required()
                                     ->numeric()
-                                    ->step(0.0)
+                                    ->step(0.1)
                             ])
                             ->minItems(1)
+                            ->columns(2),
+                    ]),
+                Fieldset::make('Taxes')
+                    ->columns(1)
+                    ->schema([
+                        Repeater::make('taxes')
+                            ->schema([
+                                TextInput::make('tax_name')
+                                    ->required(),
+                                TextInput::make('tax_amount')
+                                    ->prefix('₦')
+                                    ->required()
+                                    ->numeric()
+                                    ->step(0.1)
+                            ])
+                            ->defaultItems(0)
                             ->columns(2),
                     ]),
             ]);

@@ -6,7 +6,7 @@
 
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: DejaVu Sans, Arial, Helvetica, sans-serif;
             font-size: 12px;
             margin: 0;
             padding: 0;
@@ -46,7 +46,7 @@
         }
 
         .section {
-            margin-top: 60px;
+            margin-top: 30px;
             padding: 20px;
         }
 
@@ -122,15 +122,13 @@
             <tr>
                 <td>
                     <h2>INVOICE</h2>
-
-                    <p>
-                        <strong>DATE</strong><br>
-                        Date
-                    </p>
-
                     <p>
                         <strong>INVOICE NO</strong><br>
-                        Number
+                        {{ $invoice_id }}
+                    </p>
+                    <p>
+                        <strong>DATE</strong><br>
+                        {{ $date }}
                     </p>
                 </td>
 
@@ -138,12 +136,11 @@
                     <strong>Logo</strong><br>
                     Name<br><br>
 
-                    Happy Hedges<br>
-                    Street Address<br>
-                    City, ST ZIP Code<br>
-                    Phone<br>
-                    Fax<br>
-                    Email
+                    {{ config('app.name') }}<br>
+                    {{ config('app.address') }}<br>
+                    {{ config('app.state') }}<br>
+                    {{ config('app.phone') }}<br>
+                    {{ config('app.email') }}
                 </td>
             </tr>
         </table>
@@ -157,11 +154,10 @@
             <tr>
                 <td width="50%">
                     <strong>INVOICE TO</strong><br>
-                    Street Address<br>
-                    City, ST ZIP Code<br>
-                    Phone<br>
-                    Fax<br>
-                    Email
+                    {{ $address }}<br>
+                    {{ $state }}, {{ $zip_code }}<br>
+                    {{ $phone }}<br>
+                    {{ $email }}
                 </td>
             </tr>
         </table>
@@ -170,15 +166,13 @@
         <table class="items">
             <tr>
                 <th>Client</th>
-                <th>Location</th>
                 <th>Payment Terms</th>
                 <th>Due date</th>
             </tr>
             <tr>
-                <td>Richard</td>
-                <td>South Hills</td>
+                <td>{{ $name }}</td>
                 <td>Due on Receipt</td>
-                <td>May 25, 2024</td>
+                <td>{{ $invoice_due_date }}</td>
             </tr>
         </table>
 
@@ -186,46 +180,37 @@
         <table class="items">
             <tr>
                 <th>Item</th>
-                <th>Hours</th>
-                <th>Hourly Rate</th>
+                <th>Rate per Unit/Hour</th>
+                <th>Units/Hours</th>
                 <th>Line Total</th>
             </tr>
-
-            <tr>
-                <td>Elder care services</td>
-                <td>100</td>
-                <td>$20</td>
-                <td class="text-right">$2000</td>
-            </tr>
-
-            <tr>
-                <td>Meals</td>
-                <td>2</td>
-                <td>$25</td>
-                <td class="text-right">$50</td>
-            </tr>
+            @foreach ($items as $item)
+                <tr>
+                    <td>{{ $item['item_name'] }}</td>
+                    <td>₦{{ number_format($item['rate'], 2) }}</td>
+                    <td>{{ $item['units'] }}</td>
+                    <td class="text-right">₦{{ number_format($item['total_amount'], 2) }}</td>
+                </tr>
+            @endforeach
         </table>
 
         <!-- TOTALS -->
         <table class="totals">
             <tr>
                 <td class="label">Subtotal</td>
-                <td>$2050.00</td>
+                <td>₦{{ number_format($item_total, 2) }}</td>
             </tr>
-            <tr>
-                <td class="label">Sales Tax</td>
-                <td>$205.00</td>
-            </tr>
+            @foreach ($taxes as $tax)
+                <tr>
+                    <td class="label">{{ $tax['tax_name'] }}</td>
+                    <td>₦{{ number_format($tax['tax_amount'], 2) }}</td>
+                </tr>
+            @endforeach
             <tr>
                 <td class="label"><strong>Total</strong></td>
-                <td><strong>$2255.00</strong></td>
+                <td><strong>₦{{ number_format($grand_total, 2) }}</strong></td>
             </tr>
         </table>
-
-        <!-- FOOTER -->
-        <div class="footer">
-            Create an invoice with invoice.io
-        </div>
 
     </div>
 

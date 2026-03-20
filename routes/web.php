@@ -17,5 +17,10 @@ Route::get('/payslip/download', function () {
     return $pdf->download('payslip.pdf');
 });
 
+Route::get('/invoice/download', function () {
+    $data = session('payload');
+    $pdf = Pdf::loadView('invoice', $data);
+    return $pdf->download('invoice.pdf');
+});
 
 require __DIR__ . '/settings.php';
