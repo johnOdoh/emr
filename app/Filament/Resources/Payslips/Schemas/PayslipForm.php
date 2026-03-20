@@ -13,6 +13,7 @@ class PayslipForm
     public static function configure(Schema $schema): Schema
     {
         return $schema
+            ->columns(1)
             ->components([
                 Fieldset::make('Employee details Details')
                     ->columns([
@@ -23,13 +24,10 @@ class PayslipForm
                     ->schema([
                         TextInput::make('name')
                             ->readOnly(),
-                        // ->default('John Doe'),
                         TextInput::make('job_title')
                             ->readOnly(),
-                        // ->default('Software Engineer'),
                         TextInput::make('department')
                             ->readOnly(),
-                        // ->default('Engineering'),
                     ]),
                 Fieldset::make('Payslip Date')
                     ->columns(1)
@@ -68,13 +66,12 @@ class PayslipForm
                                     ->prefix('₦')
                                     ->required()
                                     ->numeric()
-                                    ->step(0.01,)
+                                    ->step(0.01)
                             ])
                             ->defaultItems(1)
                             ->columns(2)
                             ->columnSpanFull(),
                     ])
-            ])
-            ->columns(1);
+            ]);
     }
 }

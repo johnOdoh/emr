@@ -7,7 +7,6 @@ use App\Filament\Resources\Payslips\Pages\EditPayslip;
 use App\Filament\Resources\Payslips\Pages\ListPayslips;
 use App\Filament\Resources\Payslips\Schemas\PayslipForm;
 use App\Filament\Resources\Payslips\Tables\PayslipsTable;
-use App\Models\Payslip;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
@@ -16,7 +15,7 @@ use Filament\Tables\Table;
 
 class PayslipResource extends Resource
 {
-    protected static ?string $model = Payslip::class;
+    protected static ?string $model = null;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
