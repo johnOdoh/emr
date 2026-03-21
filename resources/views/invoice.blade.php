@@ -133,8 +133,7 @@
                 </td>
 
                 <td class="logo">
-                    <strong>Logo</strong><br>
-                    Name<br><br>
+                    <img src="{{ public_path('logo.png') }}" alt="Company Logo" style="width: 100px;"><br><br>
 
                     {{ config('app.name') }}<br>
                     {{ config('app.address') }}<br>

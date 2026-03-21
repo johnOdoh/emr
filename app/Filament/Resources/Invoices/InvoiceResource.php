@@ -7,6 +7,7 @@ use App\Filament\Resources\Invoices\Pages\EditInvoice;
 use App\Filament\Resources\Invoices\Pages\ListInvoices;
 use App\Filament\Resources\Invoices\Schemas\InvoiceForm;
 use App\Filament\Resources\Invoices\Tables\InvoicesTable;
+use App\Models\Invoice;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
@@ -15,7 +16,7 @@ use Filament\Tables\Table;
 
 class InvoiceResource extends Resource
 {
-    protected static ?string $model = null;
+    protected static ?string $model = Invoice::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::DocumentText;
 

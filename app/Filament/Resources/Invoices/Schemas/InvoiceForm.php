@@ -63,6 +63,7 @@ class InvoiceForm
                                     ->step(0.1)
                             ])
                             ->minItems(1)
+                            ->required()
                             ->columns(2),
                     ]),
                 Fieldset::make('Taxes')

@@ -3,17 +3,17 @@
 namespace App\Policies;
 
 use App\Enums\UserRole;
-use App\Models\Record;
+use App\Models\Invoice;
 use App\Models\User;
 
-class RecordPolicy
+class InvoicePolicy
 {
     /**
      * Determine whether the user can view any models.
      */
     public function viewAny(User $user): bool
     {
-        if (in_array($user->role, [UserRole::ADMIN, UserRole::HOSPITAL_LIAISON])) {
+        if (in_array($user->role, [UserRole::ADMIN, UserRole::HR])) {
             return true;
         }
         return false;
@@ -22,11 +22,8 @@ class RecordPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Record $record): bool
+    public function view(User $user, Invoice $invoice): bool
     {
-        if (in_array($user->role, [UserRole::ADMIN, UserRole::HOSPITAL_LIAISON])) {
-            return true;
-        }
         return false;
     }
 
@@ -35,7 +32,7 @@ class RecordPolicy
      */
     public function create(User $user): bool
     {
-        if (in_array($user->role, [UserRole::ADMIN, UserRole::HOSPITAL_LIAISON])) {
+        if (in_array($user->role, [UserRole::ADMIN, UserRole::HR])) {
             return true;
         }
         return false;
@@ -44,29 +41,23 @@ class RecordPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Record $record): bool
+    public function update(User $user, Invoice $invoice): bool
     {
-        if (in_array($user->role, [UserRole::ADMIN, UserRole::HOSPITAL_LIAISON])) {
-            return true;
-        }
         return false;
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Record $record): bool
+    public function delete(User $user, Invoice $invoice): bool
     {
-        if (in_array($user->role, [UserRole::ADMIN, UserRole::HOSPITAL_LIAISON])) {
-            return true;
-        }
         return false;
     }
 
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, Record $record): bool
+    public function restore(User $user, Invoice $invoice): bool
     {
         return false;
     }
@@ -74,7 +65,7 @@ class RecordPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, Record $record): bool
+    public function forceDelete(User $user, Invoice $invoice): bool
     {
         return false;
     }
