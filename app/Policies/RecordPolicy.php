@@ -35,7 +35,7 @@ class RecordPolicy
      */
     public function create(User $user): bool
     {
-        if (in_array($user->role, [UserRole::ADMIN, UserRole::HOSPITAL_LIAISON])) {
+        if (in_array($user->role, [UserRole::HOSPITAL_LIAISON])) {
             return true;
         }
         return false;
@@ -46,7 +46,7 @@ class RecordPolicy
      */
     public function update(User $user, Record $record): bool
     {
-        if (in_array($user->role, [UserRole::ADMIN, UserRole::HOSPITAL_LIAISON])) {
+        if (in_array($user->role, [UserRole::HOSPITAL_LIAISON])) {
             return true;
         }
         return false;

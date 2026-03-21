@@ -51,7 +51,7 @@ class StaffInfolist
                             ->label('Relationship to Emergency Contact')
                             ->formatStateUsing(fn($state) => $state['relationship'] ?? 'N/A')
                             ->placeholder('N/A')
-                            ->color('primary')
+                            ->color('warning')
                             ->badge(),
                         TextEntry::make('cv')
                             ->label('CV')
@@ -172,7 +172,7 @@ class StaffInfolist
                                 return collect($state)
                                     ->implode(', ');
                             })
-                            ->color('info')
+                            ->color('warning')
                             ->badge(),
                     ]),
                 Section::make('Compliance & Legal Information')

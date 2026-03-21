@@ -12,6 +12,7 @@ class Dashboard extends BaseDashboard
             \App\Filament\Widgets\WelcomeWidget::class,
             \App\Filament\Widgets\StaffStatWidget::class,
             \App\Filament\Widgets\PatientStatWidget::class,
+            \App\Filament\Widgets\RecordStatWidget::class,
         ];
     }
 }

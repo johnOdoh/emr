@@ -20,6 +20,10 @@ class InvoiceResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::DocumentText;
 
+    protected static ?string $navigationLabel = 'Generate Invoice';
+
+    protected static ?int $navigationSort = 2;
+
     public static function getNavigationUrl(): string
     {
         return InvoiceResource::getUrl('create'); // any route you want
