@@ -52,7 +52,7 @@ class CreatePayslip extends CreateRecord
         $this->data['name'] = $name;
         $this->data['job_title'] = $jobTitle;
         $this->data['department'] = $department;
-        $this->redirect('/payslip/download');
+        $this->redirect(route('payslip.download'));
         $this->halt();
     }
 }

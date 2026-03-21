@@ -16,12 +16,12 @@ Route::get('/payslip/download', function () {
     $data = session('payload');
     $pdf = Pdf::loadView('payslip', $data);
     return $pdf->download('payslip.pdf');
-});
+})->name('payslip.download');
 
 Route::get('/invoice/download', function () {
     $data = session('payload');
     $pdf = Pdf::loadView('invoice', $data);
     return $pdf->download('invoice.pdf');
-});
+})->name('invoice.download');
 
 require __DIR__ . '/settings.php';

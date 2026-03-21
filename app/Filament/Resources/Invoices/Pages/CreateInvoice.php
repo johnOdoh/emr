@@ -25,7 +25,7 @@ class CreateInvoice extends CreateRecord
         // dd($this->data, $data);
         session()->flash('payload', $data);
         $this->reset();
-        $this->redirect('/invoice/download');
+        $this->redirect(route('invoice.download'));
         $this->halt();
     }
 }
