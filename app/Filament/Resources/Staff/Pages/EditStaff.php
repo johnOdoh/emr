@@ -18,6 +18,7 @@ class EditStaff extends EditRecord
             User::where('email', $this->record->email)
                 ->update(['is_active' => false]);
         }
+        User::where('email', $this->record->email)->update(['role' => $this->record->department]);
     }
 
     protected function getHeaderActions(): array
