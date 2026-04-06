@@ -4,7 +4,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return redirect()->route('filament.user.auth.login');
+    // return redirect()->route('filament.user.auth.login');
     return view('welcome');
 })->name('home');
 
