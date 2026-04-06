@@ -8,7 +8,7 @@
 
         <link rel="icon" href="{{ asset('favicon.ico') }}" sizes="any">
 
-        <link rel="manifest" href="{{ asset('manifest.json') }}">
+        <link rel="manifest" href="{{ route('manifest') }}">
         <meta name="theme-color" content="#000000">
         <!-- iOS support -->
         <meta name="mobile-web-app-capable" content="yes">
