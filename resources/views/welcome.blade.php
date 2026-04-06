@@ -138,7 +138,19 @@
             if ('serviceWorker' in navigator) {
                 window.addEventListener('load', () => {
                     navigator.serviceWorker.register('/service-worker.js')
-                        .catch(() => {});
+                    .then(() => {
+                        console.log('SW registered');
+                    });
+
+                    // Prevent infinite reload loop
+                    if (!sessionStorage.getItem('sw-refreshed')) {
+
+                        navigator.serviceWorker.addEventListener('controllerchange', () => {
+                            sessionStorage.setItem('sw-refreshed', 'true');
+                            window.location.reload();
+                        });
+
+                    }
                 });
             }
 
