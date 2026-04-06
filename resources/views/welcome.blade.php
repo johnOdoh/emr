@@ -11,6 +11,7 @@
         <link rel="manifest" href="{{ asset('manifest.json') }}">
         <meta name="theme-color" content="#000000">
         <!-- iOS support -->
+        <meta name="mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="default">
         <meta name="apple-mobile-web-app-title" content="GnK App">
@@ -66,22 +67,46 @@
             }
 
             .hidden {
-            display: none;
-        }
+                display: none;
+            }
 
-        .guide-box {
-            font-size: 14px;
-            color: #333;
-            background-color: #f3f4f6;
-            padding: 12px;
-            border-radius: 8px;
-            text-align: left;
-            max-width: 300px;
-        }
+            .guide-box {
+                font-size: 14px;
+                color: #333;
+                background-color: #f3f4f6;
+                padding: 12px;
+                border-radius: 8px;
+                text-align: left;
+                max-width: 300px;
+            }
 
-        .guide-box ol {
-            margin-left: 20px;
-        }
+            .guide-box ol {
+                margin-left: 20px;
+            }
+
+            /* Spinner */
+            .spinner {
+                border: 3px solid #f3f3f3;
+                border-top: 3px solid #141e3d;
+                border-radius: 50%;
+                width: 18px;
+                height: 18px;
+                animation: spin 1s linear infinite;
+                display: none;
+            }
+
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+
+            .loading .spinner {
+                display: inline-block;
+            }
+
+            .loading .loading-text {
+                display: inline-block;
+            }
         </style>
     </head>
     <body class="bg-[#FDFDFC] dark:bg-[#0a0a0a] text-[#1b1b18] flex p-6 lg:p-8 items-center lg:justify-center min-h-screen flex-col">
@@ -89,6 +114,10 @@
 
         <button id="installBtn" class="install-btn hidden">
             <i class="fa fa-download"></i> Install App
+        </button>
+        <button class="install-btn loading" id="loadingBtn">
+            <div class="spinner"></div>
+            <span class="loading-text">Loading...</span>
         </button>
 
         <!-- iOS guide -->
@@ -113,6 +142,7 @@
             let deferredPrompt;
 
             const installBtn = document.getElementById('installBtn');
+            const loadingBtn = document.getElementById('loadingBtn');
             const iosGuide = document.getElementById('iosGuide');
             const macGuide = document.getElementById('macGuide');
             const unsupportedText = document.getElementById('unsupportedText');
@@ -160,6 +190,7 @@
                 deferredPrompt = e;
 
                 installBtn.classList.remove('hidden');
+                loadingBtn.classList.add('hidden');
             });
 
             installBtn.addEventListener('click', async () => {
@@ -171,6 +202,7 @@
 
                 if (outcome === 'accepted') {
                     installBtn.classList.add('hidden');
+                    loadingBtn.classList.remove('hidden');
                     continueToApp();
                 }
 
@@ -188,12 +220,14 @@
 
                 // iOS
                 if (isRealIOS) {
+                    loadingBtn.classList.add('hidden');
                     iosGuide.classList.remove('hidden');
                     return;
                 }
 
                 // macOS Safari
                 if (isMacSafari) {
+                    loadingBtn.classList.add('hidden');
                     macGuide.classList.remove('hidden');
                     return;
                 }
@@ -203,7 +237,7 @@
                     if (!deferredPrompt) {
                         continueToApp();
                     }
-                }, 1500);
+                }, 5000);
             });
 
             function continueToApp() {
