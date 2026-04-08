@@ -126,52 +126,6 @@ class StaffInfolist
                                 'default' => 2
                             ])
                     ]),
-                Section::make('Performance & Development')
-                    ->description('Performance & Development details related to the staff member')
-                    ->collapsible()
-                    ->schema([
-                        RepeatableEntry::make('performance_reviews')
-                            ->schema([
-                                TextEntry::make('review'),
-                                TextEntry::make('date')
-                                    ->dateTime('M d, Y'),
-                            ])
-                            ->placeholder('N/A')
-                            ->columns([
-                                'default' => 2
-                            ]),
-                        RepeatableEntry::make('training_records')
-                            ->schema([
-                                TextEntry::make('title'),
-                                TextEntry::make('start_date')
-                                    ->dateTime('M d, Y'),
-                                TextEntry::make('end_date')
-                                    ->dateTime('M d, Y'),
-                            ])
-                            ->placeholder('N/A')
-                            ->columns([
-                                'default' => 3
-                            ]),
-                        RepeatableEntry::make('promotion_history')
-                            ->schema([
-                                TextEntry::make('new_position'),
-                                TextEntry::make('date')
-                                    ->label('Promotion Date')
-                                    ->dateTime('M d, Y'),
-                            ])
-                            ->placeholder('N/A')
-                            ->columns([
-                                'default' => 2
-                            ]),
-                        TextEntry::make('skills')
-                            ->placeholder('N/A')
-                            ->formatStateUsing(function ($state) {
-                                return collect($state)
-                                    ->implode(', ');
-                            })
-                            ->color('warning')
-                            ->badge(),
-                    ]),
                 Section::make('Compliance & Legal Information')
                     ->description('Compliance and legal details related to the staff member')
                     ->collapsible()
@@ -204,17 +158,73 @@ class StaffInfolist
                                     ->implode(' | ');
                             })
                             ->html(),
-                        TextEntry::make('certifications')
+                        RepeatableEntry::make('certifications')
                             ->label('Certifications & Licenses')
+                            ->schema([
+                                TextEntry::make('name'),
+                                TextEntry::make('file')
+                                    ->color('primary')
+                                    ->formatStateUsing(function ($state) {
+                                        return collect($state)
+                                            ->map(fn($url) => '<a href="' . Storage::url($url) . '" target="_blank" class="text-blue-600 underline">' . 'View file' . '</a>')
+                                            ->implode(' | ');
+                                    })
+                                    ->html(),
+                                TextEntry::make('expiry_date')
+                                    ->dateTime('M d, Y')
+                                    ->placeholder('No expiry'),
+                            ])
                             ->placeholder('N/A')
-                            ->color('primary')
+                            ->columns([
+                                'default' => 3
+                            ]),
+                    ]),
+                Section::make('Performance & Development')
+                    ->description('Performance & Development details related to the staff member')
+                    ->collapsible()
+                    ->schema([
+                        RepeatableEntry::make('performance_reviews')
+                            ->schema([
+                                TextEntry::make('review'),
+                                TextEntry::make('date')
+                                    ->dateTime('M d, Y'),
+                            ])
+                            ->placeholder('N/A')
+                            ->columns([
+                                'default' => 2
+                            ]),
+                        RepeatableEntry::make('training_records')
+                            ->schema([
+                                TextEntry::make('title'),
+                                TextEntry::make('start_date')
+                                    ->dateTime('M d, Y'),
+                                TextEntry::make('end_date')
+                                    ->dateTime('M d, Y'),
+                            ])
+                            ->placeholder('N/A')
+                            ->columns([
+                                'default' => 3
+                            ]),
+                        RepeatableEntry::make('promotion_history')
+                            ->schema([
+                                TextEntry::make('old_position'),
+                                TextEntry::make('new_position'),
+                                TextEntry::make('date')
+                                    ->label('Promotion Date')
+                                    ->dateTime('M d, Y'),
+                            ])
+                            ->placeholder('N/A')
+                            ->columns([
+                                'default' => 3
+                            ]),
+                        TextEntry::make('skills')
+                            ->placeholder('N/A')
                             ->formatStateUsing(function ($state) {
                                 return collect($state)
-                                    ->map(fn($url) => '<a href="' . Storage::url($url) . '" target="_blank" class="text-blue-600 underline">' . 'View file' . '</a>')
-                                    ->implode(' | ');
+                                    ->implode(', ');
                             })
-                            ->html(),
-
+                            ->color('warning')
+                            ->badge(),
                     ]),
             ]);
     }

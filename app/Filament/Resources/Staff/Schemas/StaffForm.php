@@ -203,6 +203,13 @@ class StaffForm
                         'md' => 2,
                     ])
                     ->schema([
+                        Select::make('background_check_status')
+                            ->required()
+                            ->options([
+                                'Pending' => 'Pending',
+                                'Ongoing' => 'Ongoing',
+                                'Completed' => 'Completed',
+                            ]),
                         FileUpload::make('employment_contract')
                             ->disk('public')
                             ->directory('staff/contracts')
@@ -226,23 +233,24 @@ class StaffForm
                             ->moveFiles()
                             ->maxSize(5124)
                             ->acceptedFileTypes(['application/pdf']),
-                        FileUpload::make('certifications')
+                        Repeater::make('certifications')
                             ->label('Certifications & Licenses')
-                            ->disk('public')
-                            ->directory('staff/certifications')
-                            ->visibility('public')
-                            ->multiple()
-                            ->maxParallelUploads(3)
-                            ->moveFiles()
-                            ->maxSize(5124)
-                            ->acceptedFileTypes(['application/pdf']),
-                        Select::make('background_check_status')
-                            ->required()
-                            ->options([
-                                'Pending' => 'Pending',
-                                'Ongoing' => 'Ongoing',
-                                'Completed' => 'Completed',
-                            ]),
+                            ->schema([
+                                TextInput::make('name')->required(),
+                                FileUpload::make('file')
+                                    ->label('File(PDF)')
+                                    ->required()
+                                    ->disk('public')
+                                    ->directory('staff/certifications')
+                                    ->visibility('public')
+                                    ->moveFiles()
+                                    ->maxSize(2048)
+                                    ->acceptedFileTypes(['application/pdf']),
+                                DatePicker::make('expiry_date'),
+                            ])
+                            ->columns(3)
+                            ->columnSpanFull()
+                            ->defaultItems(0),
                     ]),
                 Fieldset::make('Performance & Development')
                     ->columns([
@@ -275,10 +283,11 @@ class StaffForm
                             ->reorderable(false),
                         Repeater::make('promotion_history')
                             ->schema([
+                                TextInput::make('old_position')->required(),
                                 TextInput::make('new_position')->required(),
                                 DatePicker::make('date')->required(),
                             ])
-                            ->columns(2)
+                            ->columns(3)
                             ->columnSpanFull()
                             ->defaultItems(0)
                             ->reorderable(false),

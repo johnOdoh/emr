@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('cv')->nullable();
             $table->string('id_document')->nullable();
             $table->json('emergency_contact_details');
+
             //employment details
             $table->string('job_title');
             $table->enum('department', Departments::toArray())->default(Departments::NURSE->value);
