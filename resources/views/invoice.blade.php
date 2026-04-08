@@ -138,7 +138,7 @@
                     {{ config('app.name') }}<br>
                     {{ config('app.address') }}<br>
                     {{ config('app.state') }}<br>
-                    {{ config('app.phone') }}<br>
+                    {{-- {{ config('app.phone') }}<br> --}}
                     {{ config('app.email') }}
                 </td>
             </tr>
