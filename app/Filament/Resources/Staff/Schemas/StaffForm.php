@@ -27,10 +27,16 @@ class StaffForm
                     ])
                     ->schema([
                         TextInput::make('surname')
+                            ->autocapitalize('words')
+                            ->trim()
                             ->required(),
                         TextInput::make('firstname')
+                            ->autocapitalize('words')
+                            ->trim()
                             ->required(),
-                        TextInput::make('middlename'),
+                        TextInput::make('middlename')
+                            ->autocapitalize('words')
+                            ->trim(),
                         Select::make('gender')
                             ->required()
                             ->options([
@@ -40,6 +46,7 @@ class StaffForm
                         TextInput::make('email')
                             ->label('Email address')
                             ->email()
+                            ->unique()
                             ->required(),
                         TextInput::make('address')
                             ->required(),

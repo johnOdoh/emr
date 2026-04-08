@@ -13,12 +13,12 @@ class CreateStaff extends CreateRecord
 
     protected function afterCreate(): void
     {
-        if (!in_array($this->record->department, UserRole::toArray())) return;
+        if (!in_array($this->record->department->value, UserRole::toArray())) return;
         if (User::where('email', $this->record->email)->exists()) return;
         User::create([
             'name' => $this->record->fullname,
             'email' => $this->record->email,
-            'role' => $this->record->role,
+            'role' => $this->record->department->value,
             'password' => bcrypt($this->record->email),
         ]);
     }

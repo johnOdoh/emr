@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\Departments;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -21,13 +22,13 @@ return new class extends Migration
             $table->string('gender');
             $table->string('phone');
             $table->string('address');
-            $table->string('email');
+            $table->string('email')->unique();
             $table->string('cv')->nullable();
             $table->string('id_document')->nullable();
             $table->json('emergency_contact_details');
             //employment details
             $table->string('job_title');
-            $table->string('department');
+            $table->enum('department', Departments::toArray())->default(Departments::NURSE->value);
             $table->string('employment_status');
             $table->string('employment_type');
             $table->timestamp('employment_date');

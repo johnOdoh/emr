@@ -3,13 +3,10 @@
 namespace App\Filament\Resources\Staff\Schemas;
 
 use Filament\Infolists\Components\RepeatableEntry;
-use Filament\Infolists\Components\RepeatableEntry\TableColumn;
 use Filament\Infolists\Components\TextEntry;
-use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Illuminate\Support\Facades\Storage;
-use Joaopaulolndev\FilamentPdfViewer\Infolists\Components\PdfViewerEntry;
 
 class StaffInfolist
 {
@@ -87,8 +84,8 @@ class StaffInfolist
                         TextEntry::make('employment_date')
                             ->dateTime('M d, Y'),
                         TextEntry::make('salary')
-                            ->label('Salary (NGN)')
                             ->numeric()
+                            ->money('NGN')
                             ->color('success')
                             ->badge(),
                         TextEntry::make('payment_frequency')
