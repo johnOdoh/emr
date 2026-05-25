@@ -2,15 +2,13 @@
 
 namespace App\Filament\Resources\Patients\RelationManagers;
 
-use Filament\Actions\AssociateAction;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\CreateAction;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\DissociateAction;
-use Filament\Actions\DissociateBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Resources\RelationManagers\RelationManager;
@@ -48,6 +46,8 @@ class VitalsRelationManager extends RelationManager
                     ->label('Blood Pressure (Diastolic mmHg)')
                     ->required()
                     ->numeric(),
+                Textarea::make('notes')
+                    ->label('Additional Notes'),
             ]);
     }
 
@@ -70,6 +70,8 @@ class VitalsRelationManager extends RelationManager
                 TextEntry::make('blood_pressure_diastolic')
                     ->suffix('mmHg')
                     ->numeric(),
+                TextEntry::make('notes')
+                    ->label('Additional notes'),
                 TextEntry::make('created_at')
                     ->label('Recorded At')
                     ->dateTime()

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->float('sugar_level');
             $table->integer('blood_pressure_systolic');
             $table->integer('blood_pressure_diastolic');
+            $table->text('notes')->nullable();
             $table->timestamps();
         });
     }
