@@ -2,7 +2,7 @@
 
 namespace App\Filament\Resources\Patients\Schemas;
 
-use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
@@ -36,7 +36,7 @@ class PatientForm
                         TextInput::make('phone')
                             ->tel()
                             ->required(),
-                        DateTimePicker::make('dob')
+                        DatePicker::make('dob')
                             ->required(),
                         TextInput::make('weight')
                             ->label('Weight (kg)')
