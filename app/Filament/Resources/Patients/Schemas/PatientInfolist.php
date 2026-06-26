@@ -5,7 +5,6 @@ namespace App\Filament\Resources\Patients\Schemas;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
-use Illuminate\Support\Facades\Storage;
 
 class PatientInfolist
 {
@@ -81,7 +80,7 @@ class PatientInfolist
                             ->color('primary')
                             ->formatStateUsing(function ($state) {
                                 return collect($state)
-                                    ->map(fn($url) => '<a href="' . Storage::url($url) . '" target="_blank" class="text-blue-600 underline">' . 'View file' . '</a>')
+                                    ->map(fn($url) => '<a href="' . asset('storage/' . $url) . '" target="_blank" class="text-blue-600 underline">' . 'View file' . '</a>')
                                     ->implode(' | ');
                             })
                             ->html(),
