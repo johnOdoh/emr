@@ -6,7 +6,6 @@ use Filament\Infolists\Components\RepeatableEntry;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
-use Illuminate\Support\Facades\Storage;
 
 class StaffInfolist
 {
@@ -53,12 +52,12 @@ class StaffInfolist
                         TextEntry::make('cv')
                             ->label('CV')
                             ->formatStateUsing(fn($state) => $state ? 'View CV' : 'No file')
-                            ->url(fn($state) => $state ? Storage::url($state) : 'N/A', true)
+                            ->url(fn($state) => $state ? asset('storage/' . $state) : 'N/A', true)
                             ->color('primary'),
                         TextEntry::make('id_document')
                             ->label('ID')
                             ->formatStateUsing(fn($state) => $state ? 'View ID Document' : 'No file')
-                            ->url(fn($state) => $state ? Storage::url($state) : 'N/A', true)
+                            ->url(fn($state) => $state ? asset('storage/' . $state) : 'N/A', true)
                             ->color('primary'),
                         // PdfViewerEntry::make(name: 'cv')
                         //     ->label('View the PDF')
@@ -140,13 +139,13 @@ class StaffInfolist
                         TextEntry::make('employment_contract')
                             ->placeholder('N/A')
                             ->formatStateUsing(fn($state) => $state ? 'View File' : 'No file')
-                            ->url(fn($state) => $state ? Storage::url($state) : 'N/A', true)
+                            ->url(fn($state) => $state ? asset('storage/' . $state) : 'N/A', true)
                             ->color('primary'),
                         TextEntry::make('nda')
                             ->label('NDA')
                             ->placeholder('N/A')
                             ->formatStateUsing(fn($state) => $state ? 'View File' : 'No file')
-                            ->url(fn($state) => $state ? Storage::url($state) : 'N/A', true)
+                            ->url(fn($state) => $state ? asset('storage/' . $state) : 'N/A', true)
                             ->color('primary'),
                         TextEntry::make('work_authorization')
                             ->label('Work Authorization Documents')
@@ -154,7 +153,7 @@ class StaffInfolist
                             ->color('primary')
                             ->formatStateUsing(function ($state) {
                                 return collect($state)
-                                    ->map(fn($url) => '<a href="' . Storage::url($url) . '" target="_blank" class="text-blue-600 underline">' . 'View file' . '</a>')
+                                    ->map(fn($url) => '<a href="' . asset('storage/' . $url) . '" target="_blank" class="text-blue-600 underline">' . 'View file' . '</a>')
                                     ->implode(' | ');
                             })
                             ->html(),
@@ -166,7 +165,7 @@ class StaffInfolist
                                     ->color('primary')
                                     ->formatStateUsing(function ($state) {
                                         return collect($state)
-                                            ->map(fn($url) => '<a href="' . Storage::url($url) . '" target="_blank" class="text-blue-600 underline">' . 'View file' . '</a>')
+                                            ->map(fn($url) => '<a href="' . asset('storage/' . $url) . '" target="_blank" class="text-blue-600 underline">' . 'View file' . '</a>')
                                             ->implode(' | ');
                                     })
                                     ->html(),
