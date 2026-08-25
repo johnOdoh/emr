@@ -33,6 +33,7 @@ class UserPanelProvider extends PanelProvider
             ->readOnlyRelationManagersOnResourceViewPagesByDefault(false)
             ->sidebarCollapsibleOnDesktop()
             ->sidebarWidth('15rem')
+            ->favicon(asset('favicon.ico'))
             ->colors([
                 'primary' => '#014a81',
             ])
